@@ -47,10 +47,7 @@ def clear():
 def pause():
     os.system("pause")
 
-
 books = []
-no = 0
-
 
 def main():
     clear()
@@ -71,7 +68,6 @@ def add():
     clear()
     try:
         books.append(book.add())
-        no = no + 1
     except UnboundLocalError or TypeError:
         return
 
