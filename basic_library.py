@@ -1,5 +1,6 @@
 import os
 
+
 class book:
 
     books = 0
@@ -28,13 +29,13 @@ class book:
         try:
             price = int(input("Price : "))
         except ValueError:
-            print("Enter Valid value only")
+            input("Enter Valid value only")
             add()
             return
         try:
             pages = int(input("Pages : "))
         except ValueError or TypeError:
-            print("Enter Valid value only")
+            input("Enter Valid value only")
             add()
             return
         return cls(name, price, pages)
@@ -47,7 +48,10 @@ def clear():
 def pause():
     os.system("pause")
 
+
 books = []
+no = 0
+
 
 def main():
     clear()
@@ -66,43 +70,46 @@ def main():
 
 def add():
     clear()
-    try:
-        books.append(book.add())
-    except UnboundLocalError or TypeError:
-        return
+    books.append(book.add())
 
 
 def show():
+    clear()
     try:
         if len(books) != 0:
             index = 1
             for i in books:
-                if i is not None:  
-                    print(f'{index} . {i.name}' )
+                if i is not None:
+                    print(f"{index} . {i.name}")
                     index += 1
-            pause()
+            input()
         else:
-            print("No book Found!!")
-            pause()
+            input("\tNo book Found!!")
     except IndexError or AttributeError:
         return
 
 
 def info():
-    try:
-        if len(books) != 0:
-            index = 1
-            for i in books:
+    clear()
+    if len(books) != 0:
+        index = 1
+        for i in books:
+            if i is not None:
                 print(f"{index} . {i.name}")
                 index += 1
+        try:
             ch = int(input("Which Book : "))
             ch -= 1
-            books[ch].display()
-        else:
-            print("No book Found!!")
-            pause()
-    except IndexError or ValueError:
-        return
+            try:
+                books[ch].display()
+            except IndexError:
+                input('\nInValid Book!!')
+                return
+        except ValueError:
+            input('\nInvalid book!!')
+            return
+    else:
+        input("\nNo book Found!!")
 
 
 def rem():
@@ -110,14 +117,14 @@ def rem():
         if len(books) != 0:
             index = 1
             for i in books:
-                print(f"{index} . {i.name}")
-                index += 1
+                if i is not None:
+                    print(f"{index} . {i.name}")
+                    index += 1
             ch = int(input("Which Book : "))
             ch -= 1
             del books[ch]
         else:
-            print("No book Found!!")
-            pause()
+            input("\nNo book Found!!")
     except IndexError:
         return
 
@@ -135,4 +142,4 @@ while True:
     elif op == 5:
         exit()
     else:
-        print("invalid operation")
+        input("\tinvalid operation")
