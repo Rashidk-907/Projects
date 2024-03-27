@@ -77,8 +77,9 @@ def show():
         if len(books) != 0:
             index = 1
             for i in books:
-                print(f"{index} . {i.name}")
-                index += 1
+                if i is not None:  
+                    print(f'{index} . {i.name}' )
+                    index += 1
             pause()
         else:
             print("No book Found!!")
